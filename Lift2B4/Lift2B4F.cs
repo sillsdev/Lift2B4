@@ -12,6 +12,8 @@
 // Responsibility: Greg Trihus
 // ---------------------------------------------------------------------------------------------
 using System;
+using System.Collections;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Lift2B4
@@ -33,14 +35,33 @@ namespace Lift2B4
         private void ok_Click(object sender, EventArgs e)
         {
             var liftConvert = new LiftConvert(textBox1.Text);
-            var lang1 = liftConvert.Slide1Lang().ToUpper();
-            var lang2 = liftConvert.Slide2Lang().ToUpper();
             var dateStamp = DateTime.Now.ToString("s");
-            var categories = liftConvert.Categories();
+            var langFolder = liftConvert.LangFolder();
+            if (Directory.Exists(langFolder))
+            {
+                const bool recursive = true;
+                Directory.Delete(langFolder, recursive);
+            }
+            var units = liftConvert.Units();
+            foreach (string unit in units)
+            {
+                liftConvert.SetUnit(unit);
+                OutputCategories(liftConvert.Categories(unit), liftConvert, langFolder, dateStamp);
+            }
+            liftConvert.SetUnit("Other");
+            OutputCategories(liftConvert.Categories(null), liftConvert, langFolder, dateStamp);
+        }
+
+        private void OutputCategories(ArrayList categories, LiftConvert liftConvert, string langFolder,
+            string dateStamp)
+        {
+            if (categories == null) throw new ArgumentNullException("categories");
             foreach (string category in categories)
             {
                 log.Items.Add(category);
-                liftConvert.Convert(category, lang1, lang2, dateStamp);
+                log.SelectedIndex = log.Items.Count - 1;
+                log.Refresh();
+                liftConvert.Convert(category, langFolder, dateStamp);
                 liftConvert.CopySchema();
                 liftConvert.CopyAudio();
             }
