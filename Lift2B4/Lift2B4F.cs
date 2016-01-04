@@ -35,7 +35,7 @@ namespace Lift2B4
         private void ok_Click(object sender, EventArgs e)
         {
             var liftConvert = new LiftConvert(textBox1.Text);
-            var dateStamp = DateTime.Now.ToString("s");
+            var dateStamp = DateTime.Now.ToString("o");
             var langFolder = liftConvert.LangFolder();
             if (Directory.Exists(langFolder))
             {

@@ -146,7 +146,7 @@ namespace Lift2B4
             {
                 Directory.CreateDirectory(_folder);
             }
-            _listFullName = Path.Combine(_folder, listSpec + ".xml");
+            _listFullName = Path.Combine(_folder, "list.xml");
             var sw = new StreamWriter(_listFullName, false, new UTF8Encoding(true));
 
             var xsltArgs = new XsltArgumentList();
@@ -182,8 +182,21 @@ namespace Lift2B4
                 foreach (XmlAttribute audioNode in audioNodes)
                 {
                     var audioName = Path.GetFileName(audioNode.InnerText);
-                    const bool overwrite = true;
-                    File.Copy(Path.Combine(srcFolder, audioName), Path.Combine(_folder, audioNode.InnerText), overwrite);
+                    var audioNameWoExt = Path.GetFileNameWithoutExtension(audioName);
+                    var pcmTemp = Path.Combine(Path.GetTempPath(),Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".wav");
+                    var p1 = new Process();
+                    p1.StartInfo.FileName = "lame.exe";
+                    p1.StartInfo.Arguments = string.Format("--decode {0} {1}", Path.Combine(srcFolder, audioName), pcmTemp);
+                    p1.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    p1.Start();
+                    p1.WaitForExit();
+                    var p2 = new Process();
+                    p2.StartInfo.FileName = "oggenc2.exe";
+                    p2.StartInfo.Arguments = string.Format("--output={0} {1}", Path.Combine(dstFolder, audioNameWoExt + ".ogg"), pcmTemp);
+                    p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    p2.Start();
+                    p2.WaitForExit();
+                    File.Delete(pcmTemp);
                 }
             }
             ListDoc.RemoveAll();

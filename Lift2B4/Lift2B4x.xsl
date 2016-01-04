@@ -36,13 +36,13 @@
                     <xsl:text>, Lesson </xsl:text>
                     <xsl:value-of select="$Lesson"/>
                 </xsl:element>
-                <xsl:element name="slide1_language_key">
+                <xsl:element name="side1_language_key">
                     <xsl:call-template name="LookupLanguageName">
                         <xsl:with-param name="code"
                             select="//entry[1]//definition[1]//form[1]/@lang"/>
                     </xsl:call-template>
                 </xsl:element>
-                <xsl:element name="slide2_language_key">
+                <xsl:element name="side2_language_key">
                     <xsl:call-template name="LookupLanguageName">
                         <xsl:with-param name="code" select="//entry[1]//citation[1]/form[1]/@lang"/>
                     </xsl:call-template>
@@ -54,7 +54,7 @@
                 <xsl:element name="creator">Copyright SIL International</xsl:element>
                 <xsl:element name="creator_url">www.sil.org</xsl:element>
                 <xsl:element name="creator_application">Lift2B4x.xsl</xsl:element>
-                <xsl:element name="subjct_name">
+                <xsl:element name="subject_name">
                     <xsl:value-of select="$Category"/>
                 </xsl:element>
                 <xsl:element name="side1_title"/>
@@ -145,9 +145,14 @@
 
     <xsl:template name="LookupLanguageName">
         <xsl:param name="code"/>
-        <xsl:value-of
-            select="document(concat($WritingSystemsFolder, $code, '.ldml'))//palaso:languageName/@value"
-        />
+        <xsl:call-template name="MakeUc">
+            <xsl:with-param name="value" select="document(concat($WritingSystemsFolder, $code, '.ldml'))//palaso:languageName/@value"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template name="MakeUc">
+        <xsl:param name="value"/>
+        <xsl:value-of select="translate($value, 'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
     </xsl:template>
         
     <xsl:template match="text()"/>

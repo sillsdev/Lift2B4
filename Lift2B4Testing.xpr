@@ -160,5 +160,7 @@
             </serialized>
         </options>
     </meta>
-    <projectTree name="Lift2B4Testing.xpr"/>
+    <projectTree name="Lift2B4Testing.xpr">
+        <file name="Lift2B4/Lift2B4x.xsl"/>
+    </projectTree>
 </project>
