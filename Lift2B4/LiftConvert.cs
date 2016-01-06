@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace Lift2B4
 {
@@ -155,22 +156,25 @@ namespace Lift2B4
             xsltArgs.AddParam("Unit","", string.Format("{0:00}", _unit));
             xsltArgs.AddParam("Lesson", "", string.Format("{0:00}", _lesson));
             xsltArgs.AddParam("Date", "", dateStamp);
+            xsltArgs.AddParam("uuid", "", Guid.NewGuid().ToString());
             xsltArgs.AddParam("WritingSystemsFolder","",string.Format("{0}/WritingSystems/", Path.GetDirectoryName(_fileName)));
 
             Lift2B4X.Transform(_fileName, xsltArgs, sw);
             sw.Close();
         }
 
-        public void CopySchema()
-        {
-            const bool overwrite = true;
-            File.Copy(BykiSchema, Path.Combine(_folder, BykiSchema), overwrite);
-        }
+        //public void CopySchema()
+        //{
+        //    const bool overwrite = true;
+        //    File.Copy(BykiSchema, Path.Combine(_folder, BykiSchema), overwrite);
+        //}
 
         public void CopyAudio()
         {
             ListDoc.Load(_listFullName);
-            var audioNodes = ListDoc.SelectNodes("//side1_sound/@url | //side2_sound/@url");
+            var nsmgr = new XmlNamespaceManager(LiftDoc.NameTable);
+            nsmgr.AddNamespace("b4x", "http://www.transparent.com/xml/BykiList/v1-transitional");
+            var audioNodes = ListDoc.SelectNodes("//b4x:side1_sound/@url | //b4x:side2_sound/@url", nsmgr);
             var srcFolder = Path.Combine(Path.GetDirectoryName(_fileName), "audio");
             if (audioNodes != null)
             {
@@ -197,9 +201,20 @@ namespace Lift2B4
                     p2.Start();
                     p2.WaitForExit();
                     File.Delete(pcmTemp);
+                    audioNode.InnerText = audioNode.InnerText.Replace(".mp3", ".ogg");
                 }
             }
+            ListDoc.Save(_listFullName);
             ListDoc.RemoveAll();
+        }
+
+        public void Package()
+        {
+            var folder = Path.GetDirectoryName(_listFullName);
+            var z = new FastZip();
+            const bool recurse = true;
+            z.CreateZip(folder + ".b4x", folder, recurse, null);
+            Directory.Delete(folder,recurse);
         }
     }
 }

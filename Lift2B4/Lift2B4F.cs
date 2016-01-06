@@ -32,7 +32,7 @@ namespace Lift2B4
             textBox1.Text = dlg.FileName;
         }
 
-        private void ok_Click(object sender, EventArgs e)
+        private void convert_Click(object sender, EventArgs e)
         {
             var liftConvert = new LiftConvert(textBox1.Text);
             var dateStamp = DateTime.Now.ToString("o");
@@ -50,6 +50,7 @@ namespace Lift2B4
             }
             liftConvert.SetUnit("Other");
             OutputCategories(liftConvert.Categories(null), liftConvert, langFolder, dateStamp);
+            close.Focus();
         }
 
         private void OutputCategories(ArrayList categories, LiftConvert liftConvert, string langFolder,
@@ -62,12 +63,18 @@ namespace Lift2B4
                 log.SelectedIndex = log.Items.Count - 1;
                 log.Refresh();
                 liftConvert.Convert(category, langFolder, dateStamp);
-                liftConvert.CopySchema();
+                //liftConvert.CopySchema();
                 liftConvert.CopyAudio();
+                liftConvert.Package();
             }
         }
 
         private void cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void close_Click(object sender, EventArgs e)
         {
             Close();
         }
