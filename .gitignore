@@ -26,3 +26,6 @@
 
 #Visual Studio
 *.suo
+*.user
+
+Unused

@@ -1,5 +1,11 @@
 Steps to prepare Cherokee data cards
 
+If at least one of each Flex item with Semantic Field Content is tagged with the semantic domains,
+The GetSemGuid.xsl will extract the semantic domain guids for each Semantic Field into semMap.xml.
+Then the UpdSemGuid.xsl can be used to apply the same guids to all items in the fwdata file with
+the same semantic field. The current file will need to be renamed to old and the created new file will
+need to be renamed so it replaces the fwdata file. (This has to be done without Flex open on the project.)
+
 1. Filter s.t.
    Citation Form(Che) non-blank
    Semantic Field is Non-blank
