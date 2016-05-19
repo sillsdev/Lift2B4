@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -34,6 +35,7 @@ namespace Lift2B4
 
         private void convert_Click(object sender, EventArgs e)
         {
+            _deleteFolder = !ModifierKeys.HasFlag(Keys.Shift);
             var liftConvert = new LiftConvert(textBox1.Text);
             var dateStamp = DateTime.Now.ToString("o");
             var langFolder = liftConvert.LangFolder();
@@ -46,26 +48,27 @@ namespace Lift2B4
             foreach (string unit in units)
             {
                 liftConvert.SetUnit(unit);
-                OutputCategories(liftConvert.Categories(unit), liftConvert, langFolder, dateStamp);
+                OutputCategories(liftConvert.Lessons(unit), liftConvert, langFolder, dateStamp);
             }
-            liftConvert.SetUnit("Other");
-            OutputCategories(liftConvert.Categories(null), liftConvert, langFolder, dateStamp);
+            //liftConvert.SetUnit("Other");
+            //OutputCategories(liftConvert.Categories(null), liftConvert, langFolder, dateStamp);
             close.Focus();
         }
 
-        private void OutputCategories(ArrayList categories, LiftConvert liftConvert, string langFolder,
+        private bool _deleteFolder = true;
+        private void OutputCategories(IList<string> lessons, LiftConvert liftConvert, string langFolder,
             string dateStamp)
         {
-            if (categories == null) throw new ArgumentNullException("categories");
-            foreach (string category in categories)
+            if (lessons == null) throw new ArgumentNullException("lessons");
+            foreach (string lesson in lessons)
             {
-                log.Items.Add(category);
+                log.Items.Add(lesson);
                 log.SelectedIndex = log.Items.Count - 1;
                 log.Refresh();
-                liftConvert.Convert(category, langFolder, dateStamp);
+                liftConvert.Convert(lesson, langFolder, dateStamp);
                 //liftConvert.CopySchema();
                 liftConvert.CopyAudio();
-                liftConvert.Package();
+                liftConvert.Package(_deleteFolder);
             }
         }
 

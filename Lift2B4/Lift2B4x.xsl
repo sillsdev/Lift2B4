@@ -16,16 +16,17 @@
     xmlns:palaso="urn://palaso.org/ldmlExtensions/v1" version="1.0">
 
     <xsl:param name="WritingSystemsFolder"/>
-    <xsl:param name="UnitTitle">Domain Categories</xsl:param>
+    <xsl:param name="UnitTitle">Universe, Creation</xsl:param>
     <xsl:param name="Unit">01</xsl:param>
     <xsl:param name="Lesson">01</xsl:param>
-    <xsl:param name="Category">Animals Birds</xsl:param>
-    <xsl:param name="FieldType">Semantic Field</xsl:param>
+    <xsl:param name="catFile">LessonCategory.xml</xsl:param>
+    <xsl:param name="Category">Universe, Creation</xsl:param>
     <xsl:param name="ListLimit" select="10"/>
     <xsl:param name="Date"/>
     <xsl:param name="uuid">3eef7ec8-2df3-486e-a69b-40bd0a73c988</xsl:param>
     
     <xsl:variable name="b4x">http://www.transparent.com/xml/BykiList/v1-transitional</xsl:variable>
+    <xsl:variable name="LessonCategories" select="document($catFile)//category"/>
 
     <xsl:output indent="yes"/>
 
@@ -95,9 +96,9 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="field">
-        <xsl:if test="@type=$FieldType and .//*[.=$Category] and ancestor::sense//*[contains(@lang,'-audio')]">
-            <xsl:variable name="listPos" select="count(preceding::*[@type=$FieldType and .//*[.=$Category]][ancestor::sense//*[contains(@lang,'-audio')]]) * 2 + 1"/>
+    <xsl:template match="trait[@name ='semantic-domain-ddp4']">
+        <xsl:if test="@value = $LessonCategories">
+            <xsl:variable name="listPos" select="count(preceding::*[@value = $LessonCategories]) + 1"/>
             <xsl:if test="$listPos &lt; $ListLimit">
                 <xsl:element name="card" namespace="{$b4x}">
                     <xsl:element name="side1_phrase" namespace="{$b4x}">
@@ -117,35 +118,15 @@
                     <xsl:element name="side2_transliteration" namespace="{$b4x}">
                         <xsl:value-of select="ancestor::entry/lexical-unit//text"/>
                     </xsl:element>
+                    <xsl:element name="side2_sound" namespace="{$b4x}">
+                        <xsl:attribute name="url">
+                            <xsl:text>sounds/</xsl:text>
+                            <xsl:value-of select="ancestor::entry//form[contains(@lang, '-audio')]/text"/>
+                        </xsl:attribute>
+                    </xsl:element>
                     <xsl:element name="is_video_sound_used" namespace="{$b4x}">false</xsl:element>
                     <xsl:element name="is_video_auto_played" namespace="{$b4x}">false</xsl:element>
                 </xsl:element>
-                <xsl:for-each select="parent::*/example[*[contains(@lang,'-audio')]][1]">
-                    <xsl:element name="card" namespace="{$b4x}">
-                        <xsl:element name="side1_phrase" namespace="{$b4x}">
-                            <xsl:value-of select="translation//text[1]"/>
-                        </xsl:element>
-                        <xsl:element name="side2_phrase" namespace="{$b4x}">
-                            <xsl:value-of select="form[1]"/>
-                        </xsl:element>
-                        <xsl:element name="list_position" namespace="{$b4x}">
-                            <xsl:value-of select="$listPos + 1"/>
-                        </xsl:element>
-                        <xsl:if test="form[2]">
-                            <xsl:element name="side2_transliteration" namespace="{$b4x}">
-                                <xsl:value-of select="form[2]"/>
-                            </xsl:element>
-                        </xsl:if>
-                        <xsl:element name="side2_sound" namespace="{$b4x}">
-                            <xsl:attribute name="url">
-                                <xsl:text>sounds/</xsl:text>
-                                <xsl:value-of select="form[contains(@lang, '-audio')]/text"/>
-                            </xsl:attribute>
-                        </xsl:element>
-                        <xsl:element name="is_video_sound_used" namespace="{$b4x}">false</xsl:element>
-                        <xsl:element name="is_video_auto_played" namespace="{$b4x}">false</xsl:element>
-                    </xsl:element>
-                </xsl:for-each>
             </xsl:if>
         </xsl:if>
     </xsl:template>
