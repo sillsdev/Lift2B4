@@ -56,14 +56,14 @@
                     </xsl:call-template>
                 </xsl:element>
                 <xsl:element name="description" namespace="{$b4x}">
-                    <xsl:value-of select="$Category"/>
+                    <xsl:value-of select="normalize-space($Category)"/>
                     <xsl:text> words</xsl:text>
                 </xsl:element>
                 <xsl:element name="creator" namespace="{$b4x}">Copyright SIL International</xsl:element>
                 <xsl:element name="creator_url" namespace="{$b4x}">www.sil.org</xsl:element>
                 <xsl:element name="creator_application" namespace="{$b4x}">Lift2B4x.xsl</xsl:element>
                 <xsl:element name="subject_name" namespace="{$b4x}">
-                    <xsl:value-of select="$Category"/>
+                    <xsl:value-of select="normalize-space($Category)"/>
                 </xsl:element>
                 <xsl:element name="side1_title" namespace="{$b4x}"/>
                 <xsl:element name="side2_title" namespace="{$b4x}"/>
@@ -102,10 +102,10 @@
             <xsl:if test="$listPos &lt; $ListLimit">
                 <xsl:element name="card" namespace="{$b4x}">
                     <xsl:element name="side1_phrase" namespace="{$b4x}">
-                        <xsl:value-of select="parent::*/definition//text[1]"/>
+                        <xsl:value-of select="normalize-space(parent::*/definition//text[1])"/>
                     </xsl:element>
                     <xsl:element name="side2_phrase" namespace="{$b4x}">
-                        <xsl:value-of select="ancestor::entry//citation//form[1]"/>
+                        <xsl:value-of select="normalize-space(ancestor::entry//citation//form[1])"/>
                     </xsl:element>
                     <xsl:element name="guid" namespace="{$b4x}">
                         <xsl:text>{</xsl:text>
@@ -116,7 +116,7 @@
                         <xsl:value-of select="$listPos"/>
                     </xsl:element>
                     <xsl:element name="side2_transliteration" namespace="{$b4x}">
-                        <xsl:value-of select="ancestor::entry/lexical-unit//text"/>
+                        <xsl:value-of select="normalize-space(ancestor::entry/lexical-unit//text)"/>
                     </xsl:element>
                     <xsl:element name="side2_sound" namespace="{$b4x}">
                         <xsl:attribute name="url">
