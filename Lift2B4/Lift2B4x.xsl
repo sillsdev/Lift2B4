@@ -97,7 +97,7 @@
     </xsl:template>
     
     <xsl:template match="trait[@name ='semantic-domain-ddp4']">
-        <xsl:if test="@value = $LessonCategories">
+        <xsl:if test="@value = $LessonCategories and not(preceding-sibling::trait[@name='semantic-domain-ddp4']/@value = $LessonCategories)">
             <xsl:variable name="listPos" select="count(preceding::*[@value = $LessonCategories]) + 1"/>
             <xsl:if test="$listPos &lt; $ListLimit">
                 <xsl:element name="card" namespace="{$b4x}">
