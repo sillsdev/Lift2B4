@@ -1,0 +1,9 @@
+Steps to prepare Cherokee data cards
+
+1. Filter s.t.
+   Citation Form(Che) non-blank
+   Semantic Field is Non-blank
+   Sound File is non-blank
+   sorted ascending by Semantic Field
+2. File, Export, Filtered LIFT
+3. Use program to create Byki folder. (They are created in the bin/Debug folder.))

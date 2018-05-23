@@ -1,0 +1,427 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="com.transparent.mlinet">
+  <xs:simpleType name="single_line_string">
+    <xs:restriction base="xs:normalizedString"/>
+  </xs:simpleType>
+  <xs:simpleType name="multi_line_string">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="language_id">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ABKHAZ"/>
+      <xs:enumeration value="ADYGHE"/>
+      <xs:enumeration value="AFRIKAANS"/>
+      <xs:enumeration value="ALBANIAN"/>
+      <xs:enumeration value="ALTAI"/>
+      <xs:enumeration value="ARABIC"/>
+      <xs:enumeration value="ARABIC_ALGERIAN"/>
+      <xs:enumeration value="ARABIC_EGYPTIAN"/>
+      <xs:enumeration value="IRAQI"/>
+      <xs:enumeration value="ARABIC_LIBYAN"/>
+      <xs:enumeration value="ARABIC_MOROCCAN"/>
+      <xs:enumeration value="ARABIC_SUDANESE"/>
+      <xs:enumeration value="ARABIC_TUNISIAN"/>
+      <xs:enumeration value="ARMENIAN"/>
+      <xs:enumeration value="ASTURIAN"/>
+      <xs:enumeration value="AYMARA"/>
+      <xs:enumeration value="AZERBAIJANI"/>
+      <xs:enumeration value="BASHKIR"/>
+      <xs:enumeration value="BALUCHI"/>
+      <xs:enumeration value="BASQUE"/>
+      <xs:enumeration value="BELORUSSIAN"/>
+      <xs:enumeration value="BEMBA"/>
+      <xs:enumeration value="BENGALI"/>
+      <xs:enumeration value="BERBER"/>
+      <xs:enumeration value="BLACKFOOT"/>
+      <xs:enumeration value="BOSNIAN"/>
+      <xs:enumeration value="BRETON"/>
+      <xs:enumeration value="BULGARIAN"/>
+      <xs:enumeration value="BURYAT"/>
+      <xs:enumeration value="CATALAN"/>
+      <xs:enumeration value="CEBUANO"/>
+      <xs:enumeration value="CHAMORRO"/>
+      <xs:enumeration value="CHECHEN"/>
+      <xs:enumeration value="MANDARIN"/>
+      <xs:enumeration value="CHUKOT"/>
+      <xs:enumeration value="CORNISH"/>
+      <xs:enumeration value="CROATIAN"/>
+      <xs:enumeration value="CZECH"/>
+      <xs:enumeration value="DANISH"/>
+      <xs:enumeration value="DARI"/>
+      <xs:enumeration value="DINKA"/>
+      <xs:enumeration value="DUTCH"/>
+      <xs:enumeration value="ECUADORIAN_QUECHUA"/>
+      <xs:enumeration value="ENGLISH"/>
+      <xs:enumeration value="ENGLISH_BRITISH"/>
+      <xs:enumeration value="ESPERANTO"/>
+      <xs:enumeration value="ESTONIAN"/>
+      <xs:enumeration value="EVEN"/>
+      <xs:enumeration value="FAROESE"/>
+      <xs:enumeration value="FARSI"/>
+      <xs:enumeration value="FINNISH"/>
+      <xs:enumeration value="FLEMISH"/>
+      <xs:enumeration value="FRENCH"/>
+      <xs:enumeration value="FRENCH_CANADIAN"/>
+      <xs:enumeration value="FRENCH_CAJUN"/>
+      <xs:enumeration value="FRISIAN"/>
+      <xs:enumeration value="GALICIAN"/>
+      <xs:enumeration value="GEORGIAN"/>
+      <xs:enumeration value="GERMAN"/>
+      <xs:enumeration value="GREEK"/>
+      <xs:enumeration value="GUARANI"/>
+      <xs:enumeration value="GUJARATI"/>
+      <xs:enumeration value="HAIDA"/>
+      <xs:enumeration value="HAITIAN_CREOLE"/>
+      <xs:enumeration value="HAUSA"/>
+      <xs:enumeration value="HAWAIIAN"/>
+      <xs:enumeration value="HEBREW"/>
+      <xs:enumeration value="HINDI"/>
+      <xs:enumeration value="HUNGARIAN"/>
+      <xs:enumeration value="ICELANDIC"/>
+      <xs:enumeration value="ILOCANO"/>
+      <xs:enumeration value="INDONESIAN"/>
+      <xs:enumeration value="INUKTITUT"/>
+      <xs:enumeration value="IRISH"/>
+      <xs:enumeration value="ITALIAN"/>
+      <xs:enumeration value="ITELMEN"/>
+      <xs:enumeration value="JAPANESE_KANJI"/>
+      <xs:enumeration value="JAVANESE"/>
+      <xs:enumeration value="KALMYK"/>
+      <xs:enumeration value="KAZAKH"/>
+      <xs:enumeration value="KONGO"/>
+      <xs:enumeration value="KOREAN"/>
+      <xs:enumeration value="KORYAK"/>
+      <xs:enumeration value="KUMYK"/>
+      <xs:enumeration value="KURDISH_KURMANJI"/>
+      <xs:enumeration value="KURDISH_SORANI"/>
+      <xs:enumeration value="LAK"/>
+      <xs:enumeration value="LATIN"/>
+      <xs:enumeration value="LATVIAN"/>
+      <xs:enumeration value="LEZGI"/>
+      <xs:enumeration value="LITHUANIAN"/>
+      <xs:enumeration value="LUGANDA"/>
+      <xs:enumeration value="LUXEMBOURGISH"/>
+      <xs:enumeration value="MACEDONIAN"/>
+      <xs:enumeration value="MALAGASY"/>
+      <xs:enumeration value="MALAY"/>
+      <xs:enumeration value="MAORI"/>
+      <xs:enumeration value="MARATHI"/>
+      <xs:enumeration value="MAYA"/>
+      <xs:enumeration value="MIRANDESE"/>
+      <xs:enumeration value="MOHAWK"/>
+      <xs:enumeration value="MONGOLIAN"/>
+      <xs:enumeration value="NAHUATL"/>
+      <xs:enumeration value="NEPALI"/>
+      <xs:enumeration value="NOGAI"/>
+      <xs:enumeration value="NORWEGIAN"/>
+      <xs:enumeration value="OJIBWE"/>
+      <xs:enumeration value="OROSHOR_LATIN"/>
+      <xs:enumeration value="OROSHOR_CYRILLIC"/>
+      <xs:enumeration value="PAPAGO"/>
+      <xs:enumeration value="PASHTO"/>
+      <xs:enumeration value="PIDGIN_ENGLISH"/>
+      <xs:enumeration value="POLISH"/>
+      <xs:enumeration value="PORTUGUESE_BRAZILIAN"/>
+      <xs:enumeration value="PORTUGUESE_EUROPEAN"/>
+      <xs:enumeration value="PROVENCAL"/>
+      <xs:enumeration value="PUNJABI_GURMUKHI"/>
+      <xs:enumeration value="PUNJABI"/>
+      <xs:enumeration value="QUECHUA"/>
+      <xs:enumeration value="ROMANIAN"/>
+      <xs:enumeration value="ROMANSCH"/>
+      <xs:enumeration value="ROMANY"/>
+      <xs:enumeration value="RUANDA"/>
+      <xs:enumeration value="RUSSIAN"/>
+      <xs:enumeration value="SAMOAN"/>
+      <xs:enumeration value="SCOTTISH_GAELIC"/>
+      <xs:enumeration value="SEPEDI"/>
+      <xs:enumeration value="SERBIAN"/>
+      <xs:enumeration value="SHONA"/>
+      <xs:enumeration value="SICILIAN"/>
+      <xs:enumeration value="SLOVAK"/>
+      <xs:enumeration value="SLOVENE"/>
+      <xs:enumeration value="SOMALI"/>
+      <xs:enumeration value="SORBIAN"/>
+      <xs:enumeration value="SOTHO"/>
+      <xs:enumeration value="SPANISH"/>
+      <xs:enumeration value="SPANISH_CASTILIAN"/>
+      <xs:enumeration value="SPANISH_COLOMBIAN"/>
+      <xs:enumeration value="SPANISH_LATIN_AMERICAN"/>
+      <xs:enumeration value="SWAHILI"/>
+      <xs:enumeration value="SWAZI"/>
+      <xs:enumeration value="SWEDISH"/>
+      <xs:enumeration value="TADJIK"/>
+      <xs:enumeration value="TAGALOG"/>
+      <xs:enumeration value="TAHITIAN"/>
+      <xs:enumeration value="TAMILI"/>
+      <xs:enumeration value="TAUSUG"/>
+      <xs:enumeration value="TELUGU"/>
+      <xs:enumeration value="THAI"/>
+      <xs:enumeration value="TIBETAN"/>
+      <xs:enumeration value="TLINGIT"/>
+      <xs:enumeration value="TONGAN"/>
+      <xs:enumeration value="TSWANA"/>
+      <xs:enumeration value="TURKISH"/>
+      <xs:enumeration value="TURKMEN"/>
+      <xs:enumeration value="TUVAN"/>
+      <xs:enumeration value="UKRAINIAN"/>
+      <xs:enumeration value="URDU"/>
+      <xs:enumeration value="UZBEK"/>
+      <xs:enumeration value="UZBEK_LATIN"/>
+      <xs:enumeration value="VIETNAMESE"/>
+      <xs:enumeration value="WELSH"/>
+      <xs:enumeration value="WOLOF"/>
+      <xs:enumeration value="XHOSA"/>
+      <xs:enumeration value="YAKUT"/>
+      <xs:enumeration value="YORUBA"/>
+      <xs:enumeration value="ZULU"/>
+      <xs:enumeration value="T_ABKHAZ"/>
+      <xs:enumeration value="T_ADYGHE"/>
+      <xs:enumeration value="T_ALTAI"/>
+      <xs:enumeration value="T_AMHARIC"/>
+      <xs:enumeration value="T_ARABIC"/>
+      <xs:enumeration value="T_ALGERIAN"/>
+      <xs:enumeration value="T_IRAQI"/>
+      <xs:enumeration value="T_MOROCCAN"/>
+      <xs:enumeration value="T_TUNISIAN"/>
+      <xs:enumeration value="T_SUDANESE"/>
+      <xs:enumeration value="T_LIBYAN"/>
+      <xs:enumeration value="T_EGYPTIAN"/>
+      <xs:enumeration value="T_ARMENIAN"/>
+      <xs:enumeration value="T_BASHKIR"/>
+      <xs:enumeration value="T_BELORUSSIAN"/>
+      <xs:enumeration value="T_BENGALI"/>
+      <xs:enumeration value="T_BULGARIAN"/>
+      <xs:enumeration value="T_BURYAT"/>
+      <xs:enumeration value="T_CHINESE"/>
+      <xs:enumeration value="T_CHUKOT"/>
+      <xs:enumeration value="T_DARI"/>
+      <xs:enumeration value="T_EVEN"/>
+      <xs:enumeration value="T_FARSI"/>
+      <xs:enumeration value="T_GEORGIAN"/>
+      <xs:enumeration value="T_GREEK"/>
+      <xs:enumeration value="T_GUJARATI"/>
+      <xs:enumeration value="T_HEBREW"/>
+      <xs:enumeration value="T_HINDI"/>
+      <xs:enumeration value="T_ITELMEN"/>
+      <xs:enumeration value="T_JAPANESE"/>
+      <xs:enumeration value="T_KALMYK"/>
+      <xs:enumeration value="T_KAZAKH"/>
+      <xs:enumeration value="T_KOREAN"/>
+      <xs:enumeration value="T_KORYAK"/>
+      <xs:enumeration value="T_KUMYK"/>
+      <xs:enumeration value="T_KURDISH_SORANI"/>
+      <xs:enumeration value="T_LAK"/>
+      <xs:enumeration value="T_LEZGI"/>
+      <xs:enumeration value="T_MACEDONIAN"/>
+      <xs:enumeration value="T_MARATHI"/>
+      <xs:enumeration value="T_MONGOLIAN"/>
+      <xs:enumeration value="T_NEPALI"/>
+      <xs:enumeration value="T_NOGAI"/>
+      <xs:enumeration value="T_PASHTO"/>
+      <xs:enumeration value="T_PUNJABI_GURMUKHI"/>
+      <xs:enumeration value="T_PUNJABI"/>
+      <xs:enumeration value="T_RUSSIAN"/>
+      <xs:enumeration value="T_SERBIAN"/>
+      <xs:enumeration value="T_SWAHILI"/>
+      <xs:enumeration value="T_TAJIKI"/>
+      <xs:enumeration value="T_TAMILI"/>
+      <xs:enumeration value="T_THAI"/>
+      <xs:enumeration value="T_TIGRINYA"/>
+      <xs:enumeration value="T_TELUGU"/>
+      <xs:enumeration value="T_TURKMEN"/>
+      <xs:enumeration value="T_TUVAN"/>
+      <xs:enumeration value="T_UKRAINIAN"/>
+      <xs:enumeration value="T_URDU"/>
+      <xs:enumeration value="T_YAKUT"/>
+      <xs:enumeration value="T_YIDDISH"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="more_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="URL"/>
+      <xs:enumeration value="RTF"/>
+      <xs:enumeration value="HTML"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="list">
+    <xs:annotation>
+      <xs:documentation>root element for BYKI/RR list</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="head">
+          <xs:annotation>
+            <xs:documentation>container of list's properties</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element xmlns:q1="com.transparent.mlinet" name="name" type="q1:single_line_string"/>
+              <xs:element xmlns:q2="com.transparent.mlinet" name="side1_language_key" type="q2:language_id"/>
+              <xs:element xmlns:q3="com.transparent.mlinet" name="side2_language_key" type="q3:language_id"/>
+              <xs:element xmlns:q4="com.transparent.mlinet" name="description" type="q4:single_line_string"/>
+              <xs:element xmlns:q5="com.transparent.mlinet" name="creator" type="q5:single_line_string"/>
+              <xs:element name="creator_url" type="xs:anyURI"/>
+              <xs:element xmlns:q6="com.transparent.mlinet" name="creator_application" type="q6:single_line_string"/>
+              <xs:element xmlns:q7="com.transparent.mlinet" minOccurs="0" name="subject_name" type="q7:single_line_string"/>
+              <xs:element xmlns:q8="com.transparent.mlinet" minOccurs="0" name="side1_title" type="q8:single_line_string"/>
+              <xs:element xmlns:q9="com.transparent.mlinet" minOccurs="0" name="side2_title" type="q9:single_line_string"/>
+              <xs:element name="creation_date" type="xs:dateTime"/>
+              <xs:element name="is_themed" type="xs:boolean"/>
+              <xs:element name="is_government" type="xs:boolean"/>
+              <xs:element name="is_ordered" type="xs:boolean"/>
+              <xs:element name="is_transliteration_shown" type="xs:boolean"/>
+              <xs:element xmlns:q10="com.transparent.mlinet" minOccurs="0" name="more_content_type" type="q10:more_type"/>
+              <xs:element minOccurs="0" name="more_content_data">
+                <xs:annotation>
+                  <xs:documentation>The same technique is used here to identify embedded vs. external more content, as in used in side*_sound (within the card element).  Existing convention of encoding the URL as the value of the more_content_data element, or appending it to the more_content_type element continue to be supported.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:base64Binary">
+                      <xs:attribute name="url" type="xs:anyURI"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ListProtection">
+                <xs:annotation>
+                  <xs:documentation>Protection levels applied to the list</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="is_Protected_Editing" type="xs:boolean"/>
+                    <xs:element name="is_Protected_Copying" type="xs:boolean"/>
+                    <xs:element name="is_Protected_Sharing" type="xs:boolean"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="LearningFeatures">
+                <xs:annotation>
+                  <xs:documentation>flags for enabling/disabling specific learning modes</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="is_PreviewIt" type="xs:boolean"/>
+                    <xs:element name="is_SR_RecognizeIt" type="xs:boolean"/>
+                    <xs:element name="is_Written_RecognizeIt" type="xs:boolean"/>
+                    <xs:element name="is_SR_ProduceIt" type="xs:boolean"/>
+                    <xs:element name="is_Written_ProduceIt" type="xs:boolean"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="cards">
+          <xs:annotation>
+            <xs:documentation>array of cards</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="card">
+                <xs:annotation>
+                  <xs:documentation>card element</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element xmlns:q11="com.transparent.mlinet" name="side1_phrase" type="q11:single_line_string"/>
+                    <xs:element xmlns:q12="com.transparent.mlinet" name="side2_phrase" type="q12:single_line_string"/>
+                    <xs:element xmlns:q13="com.transparent.mlinet" minOccurs="0" name="side1_hint" type="q13:single_line_string"/>
+                    <xs:element xmlns:q14="com.transparent.mlinet" minOccurs="0" name="side2_hint" type="q14:single_line_string"/>
+                    <xs:element minOccurs="0" name="side1_alt_answers">
+                      <xs:annotation>
+                        <xs:documentation>Array of Side1 alternative answers</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element xmlns:q15="com.transparent.mlinet" maxOccurs="unbounded" name="alt_answer" type="q15:single_line_string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="side2_alt_answers">
+                      <xs:annotation>
+                        <xs:documentation>Array of Side2 alternative answers</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element xmlns:q16="com.transparent.mlinet" maxOccurs="unbounded" name="alt_answer" type="q16:single_line_string"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element xmlns:q17="com.transparent.mlinet" minOccurs="0" name="guid" type="q17:single_line_string">
+                      <xs:annotation>
+                        <xs:documentation>This element is used by the CW1 application, but not BEAM.  It has been included here as an optional element (0..1) in order to support both use cases.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="list_position" type="xs:integer">
+                      <xs:annotation>
+                        <xs:documentation>This element is used by the CW1 application, but not BEAM.  It has been included here as an optional element (0..1) in order to support both use cases.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element xmlns:q18="com.transparent.mlinet" minOccurs="0" name="side2_transliteration" type="q18:single_line_string"/>
+                    <xs:element xmlns:q19="com.transparent.mlinet" minOccurs="0" name="comment" type="q19:multi_line_string"/>
+                    <xs:element minOccurs="0" name="side1_sound">
+                      <xs:annotation>
+                        <xs:documentation>If the url= attribute is omitted (default) , or has a value of "embedded", then binary content for the sound (or image) will be stored as the value of this element,  using base64 encoding.
+
+However, if the url= attribute contains a valid URI string, then this URI points to an external resource (holding the binary content), and the body of the parent element should be left empty.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:base64Binary">
+                            <xs:attribute name="url" type="xs:anyURI"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="side2_sound">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:base64Binary">
+                            <xs:attribute name="url" type="xs:anyURI">
+                              <xs:annotation>
+                                <xs:documentation>If the url= attribute is omitted (default) , or has a value of "embedded", then binary content for the sound (or image) will be stored as the value of this element,  using base64 encoding.
+
+However, if the url= attribute contains a valid URI string, then this URI points to an external resource (holding the binary content), and the body of the parent element should be left empty.</xs:documentation>
+                              </xs:annotation>
+                            </xs:attribute>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="side2_picture">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:base64Binary">
+                            <xs:attribute name="url" type="xs:anyURI">
+                              <xs:annotation>
+                                <xs:documentation>If the url= attribute is omitted (default) , or has a value of "embedded", then binary content for the sound (or image) will be stored as the value of this element,  using base64 encoding.
+
+However, if the url= attribute contains a valid URI string, then this URI points to an external resource (holding the binary content), and the body of the parent element should be left empty.</xs:documentation>
+                              </xs:annotation>
+                            </xs:attribute>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="is_video_sound_used" type="xs:boolean">
+                      <xs:annotation>
+                        <xs:documentation>This element is used by the BEAM application, but not CW1.  It has been included here as an optional element (0..1) in order to support both use cases.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="is_video_auto_played" type="xs:boolean">
+                      <xs:annotation>
+                        <xs:documentation>This element is used by the BEAM application, but not CW1.  It has been included here as an optional element (0..1) in order to support both use cases.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
